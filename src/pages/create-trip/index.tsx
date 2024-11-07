@@ -20,7 +20,7 @@ export function CreateTripPage() {
   const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>()
 
   const [emailsToInvite, setEmailsToInvite] = useState([
-    'diego@rocketseat.com.br'
+    'guilhermemiranda.futebol@gmail.com'
   ])
 
   function openGuestsInput() {
@@ -99,7 +99,7 @@ export function CreateTripPage() {
       return
     }
     
-    var response = await api.post('/trips', {
+    var response = await api.post('/trips/', {
       destination,
       starts_at: eventStartAndEndDates.from,
       ends_at: eventStartAndEndDates.to,
@@ -162,9 +162,6 @@ export function CreateTripPage() {
 
         />
       )}
-
-
-
     </div>
   )
 }
