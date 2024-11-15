@@ -56,8 +56,9 @@ export function Guests() {
                   {participant.isConfirmed ? (
                     ""
                   ) : (
-                    <button className='rounded-lg bg-lime-300 text-lime-950 hover:bg-lime-400 font-medium px-1' onClick={() => api.post(`participants/${participant.id}/confirm`, {
-                      name: "Gui Miranda"
+                    <button className='rounded-lg bg-lime-300 text-lime-950 hover:bg-lime-400 font-medium px-1' onClick={() => api.post(`participant/${participant.id}/confirm`, {
+                      name: "GM1577", //ALTERAR ISSO DAQUI
+	                    email: "gm157@gmail.com" //ALTERAR ISSO DAQUI
                      },    
                  ).then(response => {console.log("Participante confirmado: ", response.data);
                    api.get(`trips/${tripId}/participants`).then(response => setParticipants(response.data));
@@ -69,7 +70,7 @@ export function Guests() {
                   {participant.email}
                 </span>
               </div>         
-              <button onClick={() => api.delete(`participants/${participant.id}`
+              <button onClick={() => api.delete(`participant/${participant.id}`
               ).then(response => {console.log('Participante removido: ', response.data);
                 setParticipants(participants.filter(p => p.id !== participant.id));
               })

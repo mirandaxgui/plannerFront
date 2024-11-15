@@ -9,17 +9,20 @@ export function LoginPage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
   async function AuthParticipant(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     
+    try {
+      await api.post('/participant/auth', {
+        email,
+        password,
+      })
+      navigate(`/trips/`)
+    } catch (error) {
+      setError('Credenciais incorretas. Tente novamente.')
+    }
     
-    await api.post('/participant/auth', {
-      email,
-      password,
-    })
-
-
-    navigate(`/trips/`)
   }
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-center">
@@ -58,6 +61,7 @@ export function LoginPage() {
               />
             </div>
           </div>
+          {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
           <Button variant='secondary'size='full'>Entrar</Button>
         </form>
 
