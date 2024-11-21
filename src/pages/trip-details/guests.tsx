@@ -57,9 +57,7 @@ export function Guests() {
                     ""
                   ) : (
                     <button className='rounded-lg bg-lime-300 text-lime-950 hover:bg-lime-400 font-medium px-1' onClick={() => api.post(`participant/${participant.id}/confirm`, {
-                      name: "GM1577", //ALTERAR ISSO DAQUI
-	                    email: "gm157@gmail.com" //ALTERAR ISSO DAQUI
-                     },    
+                    },    
                  ).then(response => {console.log("Participante confirmado: ", response.data);
                    api.get(`trips/${tripId}/participants`).then(response => setParticipants(response.data));
                  })

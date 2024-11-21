@@ -33,7 +33,7 @@ return (
       <div className='flex flex-col items-center gap-3'>
         <img src="/logo.svg" alt="plann.er" />
         <h1 className="text-zinc-300 text-lg">Acesse a plataforma</h1>
-        <p className="text-zinc-300 text-lg">Faça login para conseguir realizar o gerenciamento de suas viagens!</p>
+        <p className="text-zinc-300 text-lg">Registre-se para conseguir realizar o gerenciamento de suas viagens!</p>
       </div>
 
       <form onSubmit={RegisterParticipant} className="h-72 px-4 py-4 flex flex-col items-center gap-3 ">
