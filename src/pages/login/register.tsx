@@ -20,8 +20,7 @@ export function RegisterStep() {
     await api.post('/participant/register', {
       name,
       email,
-      password,
-      isConfirmed: false
+      password
     })
 
 

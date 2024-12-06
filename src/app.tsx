@@ -12,27 +12,27 @@ import { PrivateRoute } from "./components/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <LoginPage />
   },
   {
     path: "/participant/register",
-    element: <RegisterStep />,
+    element: <RegisterStep />
   },
   {
     path: "/",
     element: <Navigate to="/login" replace />,
   },
   {
-    path: "/trips",
-    element: <PrivateRoute />,  // Componente PrivateRoute para proteger
+    path: "/trips/",
+    element: <PrivateRoute />,
     children: [
       {
-        path: "/trips",
-        element: <CreateTripPage />,
+        path: "/trips/",
+        element: <CreateTripPage />
       },
       {
         path: "/trips/:tripId",
-        element: <TripDetailsPage />,
+        element: <TripDetailsPage />
       },
     ],
   },

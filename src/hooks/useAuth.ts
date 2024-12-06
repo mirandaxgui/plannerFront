@@ -10,13 +10,14 @@ export function useAuth() {
     const token = Cookies.get('token');
 
     if (token) {
-      setIsAuthenticated(true); 
-      setIsAuthenticated(false); 
+      setIsAuthenticated(true); // Define como autenticado se o token estiver presente
+    } else {
+      setIsAuthenticated(false); // Se não houver token, não está autenticado
     }
 
     // Marca como carregado
     setLoading(false);
-  }, []); 
+  }, []); // Hook só será chamado uma vez ao montar o componente
 
   return { isAuthenticated, loading };
 }

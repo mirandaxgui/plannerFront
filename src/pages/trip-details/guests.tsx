@@ -53,16 +53,6 @@ export function Guests() {
                   ) : (
                     <CircleDashed className="text-zinc-400 size-5 shrink-0" />
                   )}
-                  {participant.isConfirmed ? (
-                    ""
-                  ) : (
-                    <button className='rounded-lg bg-lime-300 text-lime-950 hover:bg-lime-400 font-medium px-1' onClick={() => api.post(`participant/${participant.id}/confirm`, {
-                    },    
-                 ).then(response => {console.log("Participante confirmado: ", response.data);
-                   api.get(`trips/${tripId}/participants`).then(response => setParticipants(response.data));
-                 })
-                 }>Confirmar</button>
-                  )}
                 </span>
                 <span className="block text-sm text-zinc-400 truncate">
                   {participant.email}

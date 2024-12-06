@@ -17,6 +17,7 @@ export function LoginPage() {
       await api.post('/participant/auth', {
         email,
         password,
+        isConfirmed: true
       })
       navigate(`/trips/`)
     } catch (error) {
