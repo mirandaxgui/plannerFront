@@ -39,7 +39,7 @@ export function ImportantLinks() {
                 <div className="flex justify-between">
                   <span className="block font-medium text-zinc-100">{link.title ?? `Link ${index}`}</span>
                   <button onClick={() => api.delete(`trips/${tripId}/links/${link.id}`
-                  ).then(response => {
+                  ).then(() => {
                     console.log('Link removido!');
                     setLinks(links.filter(p => p.id !== link.id));
                   })
