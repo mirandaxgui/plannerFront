@@ -9,34 +9,39 @@ import { LoginPage } from "./pages/login";
 import { RegisterStep } from "./pages/login/register";
 import { PrivateRoute } from "./components/PrivateRoute";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/participant/register",
+      element: <RegisterStep />,
+    },
+    {
+      path: "/",
+      element: <Navigate to="/login" replace />,
+    },
+    {
+      path: "/trips/",
+      element: <PrivateRoute />,
+      children: [
+        {
+          path: "/trips/",
+          element: <CreateTripPage />,
+        },
+        {
+          path: "/trips/:tripId",
+          element: <TripDetailsPage />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/login",
-    element: <LoginPage />
-  },
-  {
-    path: "/participant/register",
-    element: <RegisterStep />
-  },
-  {
-    path: "/",
-    element: <Navigate to="/login" replace />,
-  },
-  {
-    path: "/trips/",
-    element: <PrivateRoute />,
-    children: [
-      {
-        path: "/trips/",
-        element: <CreateTripPage />
-      },
-      {
-        path: "/trips/:tripId",
-        element: <TripDetailsPage />
-      },
-    ],
-  },
-]);
+    basename: "/plannerFront", // Base path para GitHub Pages
+  }
+);
 
 export function App() {
   return <RouterProvider router={router} />;
