@@ -67,7 +67,7 @@ export function LoginPage() {
         </form>
 
         <p className="text-lg text-zinc-500 font-medium py-12">
-          Ainda não tem uma conta? <a className="text-zinc-300 underline" href="http://localhost:5173/participant/register">Inscreva-se</a> </p>
+          Ainda não tem uma conta? <a className="text-zinc-300 underline" href="https://mirandaxgui.github.io/plannerFront/participant/register">Inscreva-se</a> </p>
       </div>
 
     </div>
