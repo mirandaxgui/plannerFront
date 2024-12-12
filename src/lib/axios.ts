@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: import.meta.env.MODE === 'production'
-    ? 'http://18.230.184.125:8080'  // URL do seu backend em produção
-    : 'http://18.230.184.125:8080',  // URL de proxy para desenvolvimento
+    ? 'https://18.230.184.125:8080'  // URL do seu backend em produção
+    : 'https://18.230.184.125:8080',  // URL de proxy para desenvolvimento
   withCredentials: true,
 });
