@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+
+import { Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';  // Supondo que você tenha um hook de autenticação
 
 export function PrivateRoute() {
