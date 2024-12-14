@@ -12,7 +12,7 @@ export function LoginPage() {
   const [error, setError] = useState<string | null>(null)
   async function AuthParticipant(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    
+
     try {
       await api.post('/participant/auth', {
         email,
@@ -23,13 +23,13 @@ export function LoginPage() {
     } catch (error) {
       setError('Credenciais incorretas. Tente novamente.')
     }
-    
+
   }
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
         <div className='flex flex-col items-center gap-3'>
-          <img src="plannerFront/assets/logo-DNBcyZYp.svg" alt="plann.er" />
+          <img src={`${import.meta.env.BASE_URL}assets/logo-DNBcyZYp.svg`} alt="plann.er" />
           <h1 className="text-zinc-300 text-lg">Acesse a plataforma</h1>
           <p className="text-zinc-300 text-lg">Faça login para conseguir realizar o gerenciamento de suas viagens!</p>
         </div>
@@ -63,7 +63,7 @@ export function LoginPage() {
             </div>
           </div>
           {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
-          <Button variant='secondary'size='full'>Entrar</Button>
+          <Button variant='secondary' size='full'>Entrar</Button>
         </form>
 
         <p className="text-lg text-zinc-500 font-medium py-12">
