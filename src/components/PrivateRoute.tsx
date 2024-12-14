@@ -1,19 +1,23 @@
-
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';  // Supondo que você tenha um hook de autenticação
+import { useAuth } from '../hooks/useAuth'; // Importando o hook de autenticação
 
 export function PrivateRoute() {
-  const { isAuthenticated } = useAuth();  // Verifique o estado de autenticação do usuário
+  const { isAuthenticated, loading } = useAuth(); // Obtenção dos estados de autenticação e carregamento
 
-  // Se o usuário não estiver autenticado, mostre o erro 403 ou redirecione para o login
-  if (!isAuthenticated) {
+  // Enquanto está carregando a autenticação, não renderiza nada
+  if (loading) {
+    return <div>Carregando...</div>; // Pode exibir um spinner ou mensagem de carregamento
+  }
+
+  // Se o usuário não estiver autenticado, exibe erro 403 ou redireciona para login
+  if (isAuthenticated === false) {
     return (
       <div>
         <h1>403 - Forbidden</h1>
         <p>Você não tem permissão para acessar essa página.</p>
       </div>
-    ); 
+    );
   }
 
-  return <Outlet />;  // Se estiver autenticado, permite acessar as páginas filhas
+  return <Outlet />; // Se autenticado, permite o acesso à página protegida
 }
