@@ -37,10 +37,7 @@ const router = createBrowserRouter(
         },
       ],
     },
-  ],
-  {
-    basename: "/plannerFront", // Base path para GitHub Pages
-  }
+  ]
 );
 
 export function App() {
