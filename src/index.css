@@ -1,7 +1,13 @@
-/* Remova temporariamente o Tailwind ou qualquer estilo que possa causar o problema */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    min-width: 0;
+}
+input {
+    color-scheme: dark;
+}
+:root {
+    --rdp-accent-color: #BEF264;
+}
