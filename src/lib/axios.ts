@@ -11,7 +11,9 @@ api.interceptors.request.use((config) => {
   const token = Cookies.get('token'); // Recupera o token do cookie
 
   if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`; // Adiciona o token ao header
+    console.log(token)
+    config.headers['Set-Cookie'] = `token=${token}`; // Adiciona o token ao header
+
   }
 
   return config;
