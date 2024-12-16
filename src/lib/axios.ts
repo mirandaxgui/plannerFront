@@ -9,12 +9,8 @@ export const api = axios.create({
 // Adiciona o token no header de todas as requisições
 api.interceptors.request.use((config) => {
   const token = Cookies.get('token'); // Recupera o token do cookie
-
-  if (token) {
-    console.log(token)
-    config.headers['Set-Cookie'] = `token=${token}`; // Adiciona o token ao header
-
-  }
+  console.log(token);
+  
 
   return config;
 });

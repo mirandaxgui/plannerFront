@@ -1,44 +1,30 @@
-import { useState, type FormEvent } from 'react';
-import { Button } from '../../components/button';
-import { Lock, Mail } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { api } from '../../lib/axios';
-import Cookies from 'js-cookie';
+import { useState, type FormEvent } from 'react'
+import { Button } from '../../components/button'
+import { Lock, Mail } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../lib/axios'
+
 
 export function LoginPage() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
-
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
   async function AuthParticipant(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
-      // Envia a requisição de autenticação para o backend
       await api.post('/participant/auth', {
         email,
         password,
-        isConfirmed: true,
-      });
-
-      // Depois que a requisição for bem-sucedida, o token estará no cookie.
-      const token = Cookies.get('token'); // Captura o token diretamente do cookie
-
-      if (token) {
-        // Armazenar o token no cookie (se necessário, embora já esteja no cookie)
-        Cookies.set('token', token, { expires: 1 }); // Exemplo de expiração (1 dia)
-        
-        // Redireciona para a tela de viagens
-        navigate('/trips/');
-      } else {
-        setError('Token não encontrado no cookie.');
-      }
+        isConfirmed: true
+      })
+      navigate(`/trips/`)
     } catch (error) {
-      setError('Credenciais incorretas. Tente novamente.');
+      setError('Credenciais incorretas. Tente novamente.')
     }
-  }
 
+  }
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
@@ -83,6 +69,11 @@ export function LoginPage() {
         <p className="text-lg text-zinc-500 font-medium py-12">
           Ainda não tem uma conta? <a className="text-zinc-300 underline" href="https://planner-front-gold.vercel.app/participant/register">Inscreva-se</a> </p>
       </div>
+
     </div>
-  );
+  )
+
 }
+
+
+
