@@ -1,23 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);  // Estado de carregamento
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
+    // Verificar se o token existe nas cookies
     const token = Cookies.get('token');
 
     if (token) {
-      setIsAuthenticated(true); // Define como autenticado se o token estiver presente
+      setIsAuthenticated(true); // Se o token estiver presente, o usuário está autenticado
     } else {
-      setIsAuthenticated(false); // Se não houver token, não está autenticado
+      setIsAuthenticated(false); // Caso contrário, não está autenticado
     }
 
-    // Marca como carregado
-    setLoading(false);
-  }, []); // Hook só será chamado uma vez ao montar o componente
+    setLoading(false); // Após a verificação, marca como "não carregando"
+  }, []);
 
   return { isAuthenticated, loading };
 }

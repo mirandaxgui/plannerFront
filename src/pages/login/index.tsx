@@ -3,6 +3,7 @@ import { Button } from '../../components/button'
 import { Lock, Mail } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../lib/axios'
+import Cookies from 'js-cookie'
 
 
 export function LoginPage() {
@@ -11,19 +12,26 @@ export function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   async function AuthParticipant(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
+    event.preventDefault();
+  
     try {
-      await api.post('/participant/auth', {
+      const response = await api.post('/participant/auth', {
         email,
         password,
-        isConfirmed: true
-      })
-      navigate(`/trips/`)
+        isConfirmed: true,
+      });
+  
+      // Supondo que a resposta da API contenha o token
+      const { token } = response.data;
+  
+      // Armazenar o token no cookie
+      Cookies.set('token', token, { expires: 1 }); // Define o tempo de expiração (1 dia, por exemplo)
+  
+      // Redirecionar para a tela de viagens
+      navigate('/trips/');
     } catch (error) {
-      setError('Credenciais incorretas. Tente novamente.')
+      setError('Credenciais incorretas. Tente novamente.');
     }
-
   }
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-center">
@@ -67,7 +75,7 @@ export function LoginPage() {
         </form>
 
         <p className="text-lg text-zinc-500 font-medium py-12">
-          Ainda não tem uma conta? <a className="text-zinc-300 underline" href="https://mirandaxgui.github.io/plannerFront/participant/register">Inscreva-se</a> </p>
+          Ainda não tem uma conta? <a className="text-zinc-300 underline" href="https://planner-front-gold.vercel.app/participant/register">Inscreva-se</a> </p>
       </div>
 
     </div>
