@@ -1,14 +1,48 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { LoginPage } from './pages/login';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import { CreateTripPage } from "./pages/create-trip";
+import { TripDetailsPage } from "./pages/trip-details";
+import { LoginPage } from "./pages/login";
+import { RegisterStep } from "./pages/login/register";
+import { PrivateRoute } from "./components/PrivateRoute";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/participant/register",
+      element: <RegisterStep />,
+    },
+    {
+      path: "/",
+      element: <Navigate to="/login" replace />,
+    },
+    {
+      path: "/trips/",
+      element: <PrivateRoute />,
+      children: [
+        {
+          path: "/trips/",
+          element: <CreateTripPage />,
+        },
+        {
+          path: "/trips/:tripId",
+          element: <TripDetailsPage />,
+        },
+      ],
+    },
+  ],
+  {
+    basename: "/plannerFront", // Base path para GitHub Pages
+  }
+);
 
 export function App() {
-  return (
-    <Router basename="/plannerFront">
-      <Routes>
-        <Route path="/" element={<div>Home Page</div>} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<div>Page Not Found</div>} />
-      </Routes>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }

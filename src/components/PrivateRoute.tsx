@@ -1,7 +1,20 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
-export function PrivateRoute({ children }: { children: JSX.Element }) {
-  const isAuthenticated = true;  // Lógica de autenticação, altere conforme necessário.
+// Componente PrivateRoute que verifica a autenticação
+export function PrivateRoute() {
+  const { isAuthenticated, loading } = useAuth();
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  // Enquanto estiver carregando, podemos retornar null ou um componente de loading
+  if (loading) {
+    return <div>Loading...</div>;  // Você pode personalizar esse loading
+  }
+
+  // Se o usuário não estiver autenticado, redireciona para o login
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // Se estiver autenticado, renderiza os componentes da rota
+  return <Outlet />;
 }
