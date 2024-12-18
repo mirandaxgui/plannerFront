@@ -8,7 +8,7 @@ export default defineConfig({
       '/api': {
         target: 'https://guiplanner.hopto.org:443',
         changeOrigin: true,
-        secure: false,
+        secure: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
