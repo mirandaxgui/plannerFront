@@ -3,6 +3,7 @@ import { Button } from '../../components/button'
 import { Lock, Mail } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../lib/axios'
+import Cookies from 'js-cookie'
 
 
 export function LoginPage() {
@@ -14,11 +15,12 @@ export function LoginPage() {
     event.preventDefault()
 
     try {
-      await api.post('/participant/auth', {
+      const response = await api.post('/participant/auth', {
         email,
         password,
         isConfirmed: true
       })
+      Cookies.set('token', response.data.token, { expires: 7 });
       navigate(`/trips/`)
     } catch (error) {
       setError('Credenciais incorretas. Tente novamente.')
@@ -29,7 +31,7 @@ export function LoginPage() {
     <div className="h-screen flex items-center justify-center bg-pattern bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
         <div className='flex flex-col items-center gap-3'>
-          <img src="/assets/logo-DNBcyZYp.svg" alt="plann.er" />
+          <img src="/assets/logo-BeuFEsfK.svg" alt="plann.er" />
           <h1 className="text-zinc-300 text-lg">Acesse a plataforma</h1>
           <p className="text-zinc-300 text-lg">Faça login para conseguir realizar o gerenciamento de suas viagens!</p>
         </div>
