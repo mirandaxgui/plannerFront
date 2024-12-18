@@ -82,7 +82,7 @@ return (
       </form> 
 
       <p className="text-lg text-zinc-500 font-medium pt-12">
-        Registre-se para obter acesso aos recursos do <button className="text-zinc-300 underline">plann.er</button> </p>
+        Registre-se para obter acesso aos recursos do <span className="text-zinc-300 underline">plann.er</span> </p>
     </div>
 
   </div>
